@@ -1,0 +1,25 @@
+services:
+  # frontend container
+  app:
+    build:
+      context: ./letour-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./letour-app:/letour-app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  # backend container
+  janus:
+    image: canyan/janus-gateway:latest
+    #volumes:
+      #- ./janus/janus-config:/opt/janus/etc/janus
+    ports:
+      #- "7088:7088" #HTTPS admin API (using 8088)
+      - "8088:8088" # HTTP admin API
+      #- "8188:8188" # WebSocket API (not using)
+      #- "8888:8888" # Secure WebSocket API (not using)
+      - "10000-10200:10000-10200/udp" # Media ports for WebRTC
+    #environment:
+      #- TURN_SERVER=turn:your-turn-server-url
