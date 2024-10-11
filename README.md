@@ -17,3 +17,8 @@ To stop the server that is in the background, use
 ```console
 $ docker-compose down
 ```
+
+# Useful Links
+- [Janus Javascript API (janus.js)](https://janus.conf.meetecho.com/docs/JS.html)
+- [Audio Bridge Demo](https://janus.conf.meetecho.com/demos/audiobridge.html)
+- [Audio Bridge Documentation](https://janus.conf.meetecho.com/docs/audiobridge)
