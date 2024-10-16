@@ -32,17 +32,17 @@ const AudienceHomePage = () => {
         <h1 style={{fontSize: '36px', fontWeight: 'bold'}}>LeTour Guide</h1>
         <Stack direction="row">
           <FormControl sx={{ m: 1, minWidth: 180 }}>
-            <InputLabel sx={{ fontWeight: 'bold'}} >Group Name</InputLabel>
+            <InputLabel sx={{ fontWeight: 'bold', color: 'black'}} >Group Name</InputLabel>
             <Select 
               label="Group Name" 
               autoWidth
               value={selectedGroup}
               onChange={selectGroup}
-              sx={{ fontWeight: 'bold' }}
+              sx={{ fontWeight: 'bold', color: 'black' }}
               MenuProps={{ PaperProps: { sx: { minWidth: 180 } } }}
             >
               {groups.map((name) => (
-                <MenuItem value={name} sx={{ fontWeight: 'bold' }}>
+                <MenuItem value={name} sx={{ fontWeight: 'bold', color: 'black' }}>
                   {name}
                 </MenuItem>
               ))}

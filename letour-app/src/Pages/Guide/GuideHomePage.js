@@ -28,15 +28,15 @@ const GuideHomePage = () => {
   return (
     <div style={backgroundstyle}>
       <Stack alignItems={'center'} marginTop={'50px'}>
-        <h1 style={{fontSize: '36px', fontWeight: 'bold'}}>LeTour Guide</h1>
+        <h1 style={{fontSize: '36px', fontWeight: 'bold', color: 'black'}}>LeTour Guide</h1>
         <Stack direction="row">
           <TextField 
             label="Group Name" 
             variant="outlined"
             value={newGroupName}
             onChange={newGroupChange}
-            InputProps={{ sx: { fontWeight: 'bold' } }}
-            InputLabelProps={{ sx: { fontWeight: 'bold' } }}
+            InputProps={{ sx: { fontWeight: 'bold', color: 'black' } }}
+            InputLabelProps={{ sx: { fontWeight: 'bold', color: 'black' } }}
           />
           <Button variant="contained" onClick={createGroup}>Create</Button>
         </Stack>

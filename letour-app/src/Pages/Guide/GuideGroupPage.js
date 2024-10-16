@@ -1,11 +1,14 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Stack, Dialog, DialogTitle, DialogActions } from '@mui/material';
+import VolumeUp from '@mui/icons-material/VolumeUp';
+import VolumeOff from '@mui/icons-material/VolumeOff';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const GuideGroupPage = () => {
   let { groupname } = useParams();
   const navigate = useNavigate();
   const [dialogState, setDialogState] = useState(false);
+  const [volume, setVolume] = React.useState(100);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
@@ -16,6 +19,10 @@ const GuideGroupPage = () => {
     width: '100vw', 
     display: 'flex', 
     justifyContent: 'center', 
+  };
+
+  const handleVolumeMute = () => {
+    volume? setVolume(0) : setVolume(100)
   };
 
   const OpenDialog = () => {
@@ -33,6 +40,14 @@ const GuideGroupPage = () => {
       <Stack alignItems={'center'} marginTop={'50px'}>
         <h1 style={{fontSize: '36px', fontWeight: 'bold'}}>LeTour Guide</h1>
         <p>You are leading the {groupname} Group</p>
+        <Stack direction="row">
+          <Button
+            onClick={handleVolumeMute}
+          >
+            {volume? <VolumeUp/> : <VolumeOff/>}
+          </Button>
+          <p>Microphone</p>
+        </Stack>
         <Button variant="contained" onClick={OpenDialog}>End Group</Button>
       </Stack>
       <Dialog
