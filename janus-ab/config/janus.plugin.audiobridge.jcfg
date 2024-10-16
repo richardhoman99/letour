@@ -82,19 +82,19 @@ room-1234: {
 	#record_file = "recording.wav"
 }
 
-green: {
+room-1: {
 	description = "Demo room for green group"
 	secret = "adminpwd"
 	sampling_rate = 16000
 }
 
-blue: {
+room-2: {
 	description = "Demo room for blue group"
 	secret = "adminpwd"
 	sampling_rate = 16000
 }
 
-red: {
+room-3: {
 	description = "Demo room for red group"
 	secret = "adminpwd"
 	sampling_rate = 16000

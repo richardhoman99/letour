@@ -37,9 +37,9 @@ RUN apt-get clean
 # manually make and build libnice
 RUN git clone https://gitlab.freedesktop.org/libnice/libnice
 WORKDIR /root/libnice
-RUN meson --prefix=/usr build && ninja -C build && ninja -C build install
+RUN meson --prefix=/usr --libdir=lib build && ninja -C build && ninja -C build install
 
-# build janus repo
+## build janus repo
 WORKDIR /opt
 RUN git clone https://github.com/meetecho/janus-gateway.git
 WORKDIR /opt/janus-gateway
