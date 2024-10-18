@@ -21,7 +21,7 @@ services:
     ports:
       - "7088:7088" # HTTPS admin API
       - "8088:8088" # HTTP API
-      #- "8188:8188" # WebSocket API (not using)
+      - "8188:8188" # WebSocket API
       #- "8888:8888" # Secure WebSocket API (not using)
       - "10000-10200:10000-10200/udp" # Media ports for WebRTC
     #environment:
