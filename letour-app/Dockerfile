@@ -11,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # copy source code
-# COPY . .
+COPY . .
 
 EXPOSE 3000
 
