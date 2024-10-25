@@ -9,11 +9,18 @@ const AudienceHomePage = (props) => {
   const groups = ['Red','Green','Blue']
   const [selectedGroup, setSelectedGroup] = useState('Red');
   
-  useEffect(()=>{
-	let temp = props.session.plugin.list().then((temp) => {
-      console.log(temp);
-    })
-  },[]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const temp = await session.plugin.list();
+        console.log(temp);
+      } catch (error) {
+        console.error("Error fetching plugin list:", error);
+      }
+    };
+	  
+	  fetchData();
+	}, [session, plugin]);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
