@@ -6,18 +6,23 @@ const AudienceHomePage = (props) => {
   const { session, plugin } = props;
   let { groupname } = useParams();
   const navigate = useNavigate();
-  const groups = ['Red','Green','Blue']
+  const [openGroups, setOpenGroups] = useState(['Red','Green','Blue']);
   const [selectedGroup, setSelectedGroup] = useState('Red');
   
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const temp = await session.plugin.list();
-        console.log(temp);
-      } catch (error) {
-        console.error("Error fetching plugin list:", error);
-      }
-    };
+	  if (session && session.plugin) {
+        try {
+          let message = await session.plugin.list();
+		  const listData = message._plainMessage.plugindata.data.list;
+		  const roomDescriptions = listData.map(item => item.description);
+		  setOpenGroups(listData.map(item => item.description));
+		  console.log('fectched plugin.list')
+        } catch (error) {
+          console.error("Error fetching plugin list:", error);
+        }
+      };
+	}
 	  
 	  fetchData();
 	}, [session, plugin]);
@@ -55,8 +60,8 @@ const AudienceHomePage = (props) => {
               sx={{ fontWeight: 'bold' }}
               MenuProps={{ PaperProps: { sx: { minWidth: 180 } } }}
             >
-              {groups.map((name) => (
-                <MenuItem value={name} sx={{ fontWeight: 'bold' }}>
+              {openGroups.map((name) => (
+                <MenuItem key={name} value={name} sx={{ fontWeight: 'bold' }}>
                   {name}
                 </MenuItem>
               ))}
