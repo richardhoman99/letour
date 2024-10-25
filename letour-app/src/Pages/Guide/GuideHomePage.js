@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { Button, Stack, Snackbar, TextField } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const GuideHomePage = () => {
+const GuideHomePage = (props) => {
   let { groupname } = useParams();
   const navigate = useNavigate();
   const [newGroupName, setNewGroupName] = useState('');

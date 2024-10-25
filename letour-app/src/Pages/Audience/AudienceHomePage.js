@@ -1,12 +1,19 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Button, Stack, Select, FormControl, InputLabel, MenuItem, Snackbar } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const AudienceHomePage = () => {
+const AudienceHomePage = (props) => {
+  const { session, plugin } = props;
   let { groupname } = useParams();
   const navigate = useNavigate();
   const groups = ['Red','Green','Blue']
   const [selectedGroup, setSelectedGroup] = useState('Red');
+  
+  useEffect(()=>{
+	let temp = props.session.plugin.list().then((temp) => {
+      console.log(temp);
+    })
+  },[]);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',

@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { Button, Stack, Slider, Dialog, DialogTitle, DialogActions } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const AudienceGroupPage = () => {
+const AudienceGroupPage = (props) => {
   let { groupname } = useParams();
   const navigate = useNavigate();
   const [dialogState, setDialogState] = useState(false);
