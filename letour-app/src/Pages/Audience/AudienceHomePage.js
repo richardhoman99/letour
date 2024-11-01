@@ -7,25 +7,26 @@ const AudienceHomePage = (props) => {
   let { groupname } = useParams();
   const navigate = useNavigate();
   const [openGroups, setOpenGroups] = useState(['Red','Green','Blue']);
-  const [selectedGroup, setSelectedGroup] = useState('Red');
+  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [selectedGroupKey, setSelectedGroupKey] = useState(null);
   
   useEffect(() => {
     const fetchData = async () => {
 	  if (session && session.plugin) {
         try {
           let message = await session.plugin.list();
+		  console.log(session.plugin);
 		  const listData = message._plainMessage.plugindata.data.list;
 		  const roomDescriptions = listData.map(item => item.description);
-		  setOpenGroups(listData.map(item => item.description));
-		  console.log('fectched plugin.list')
+		  setOpenGroups(listData.map(item => ({roomName: item.description, roomNumber: item.room})));
+		  await console.log('fectched plugin.list');
         } catch (error) {
           console.error("Error fetching plugin list:", error);
         }
       };
 	}
-	  
-	  fetchData();
-	}, [session, plugin]);
+	fetchData();
+  }, [session, plugin]);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
@@ -40,9 +41,11 @@ const AudienceHomePage = (props) => {
 
   const selectGroup = (event: SelectChangeEvent) => {
     setSelectedGroup(event.target.value);
+	const group = openGroups.find(group => group.roomName === event.target.value);
+    setSelectedGroupKey(group ? group.roomNumber : null);
   };
   const joinGroup = () => {
-    navigate(`/letour/${selectedGroup}`)
+    navigate(`/letour/${selectedGroup}`, {state: {selectedGroupKey}})
   };
 
   return (
@@ -60,9 +63,9 @@ const AudienceHomePage = (props) => {
               sx={{ fontWeight: 'bold' }}
               MenuProps={{ PaperProps: { sx: { minWidth: 180 } } }}
             >
-              {openGroups.map((name) => (
-                <MenuItem key={name} value={name} sx={{ fontWeight: 'bold' }}>
-                  {name}
+              {openGroups.map((group) => (
+                <MenuItem key={group.roomNumber} value={group.roomName} sx={{ fontWeight: 'bold' }}>
+                  {group.roomName}
                 </MenuItem>
               ))}
             </Select>

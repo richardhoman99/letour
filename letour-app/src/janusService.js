@@ -10,6 +10,7 @@ export const initJanusSession = async () => {
     // Create a new session
     const connection = await janus.createConnection();
 	const session = await connection.createSession();
+	console.log('connection:', connection.on);
     
     console.log('Janus session established:', session);
 

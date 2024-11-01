@@ -1,10 +1,12 @@
 import { React, useState } from 'react';
 import { Button, Stack, Dialog, DialogTitle, DialogActions } from '@mui/material';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 const GuideGroupPage = (props) => {
   let { groupname } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { selectedGroupKey } = location.state || {};
   const [dialogState, setDialogState] = useState(false);
 
   const backgroundstyle = {
