@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { initJanusSession } from './janusService.js';
@@ -9,36 +9,46 @@ import AudienceHomePage from './Pages/Audience/AudienceHomePage.js';
 import AudienceGroupPage from './Pages/Audience/AudienceGroupPage.js';
 
 function App() {
-  const [janusSession, setJanusSession] = useState(null);
-	
+  const hasJanusInit = useRef(false);
+  const [session, setSession] = useState(null);
+  const [plugin, setPlugin] = useState(null);
+
+  const startJanus = async () => {
+    hasJanusInit.current = true;
+    const initSession = await initJanusSession();
+    if (initSession) {
+      const { session, plugin } = initSession;
+      setSession(session);
+      setPlugin(plugin);
+      console.log('Janus is ready');
+    } else {
+      hasJanusInit.current = false;
+    }
+  };
+
   useEffect(() => {
-    const startJanus = async () => {
-	  const initSession = await initJanusSession();
-      if (initSession) {
-        const { session, plugin } = initSession;
-		setJanusSession({ session, plugin });
-        console.log('Janus is ready with session and plugin:', session, plugin);
-      } else {
-        console.error('Failed to initialize Janus session');
-      }
-    };
-    startJanus();
-	
-	return () => {
-      if (janusSession?.session){
-		  janusSession.session.destroy();
-		  setJanusSession(null);
-		  console.log('session.destroy()');
-	  }
+    if (!hasJanusInit.current) {
+      console.log('Configuring Janus session & plugin');
+      startJanus();
+    }
+  	
+  	return () => {
+      if (session) {
+        session.destroy();
+  		  setSession(null);
+        setPlugin(null);
+  		  console.log('Janus session destroyed');
+  	  }
     };
   }, []);
+  
   return (
     <Router>
       <Routes>
-        <Route path="/letour" element={<AudienceHomePage session={janusSession}/>} />
-        <Route path="/letour/:groupname" element={<AudienceGroupPage session={janusSession}/>} />
-        <Route path="/letour/guide" element={<GuideHomePage session={janusSession}/>} />
-        <Route path="/letour/guide/:groupname" element={<GuideGroupPage session={janusSession}/>} />
+        <Route path="/letour" element={<AudienceHomePage plugin={plugin}/>} />
+        <Route path="/letour/:groupname" element={<AudienceGroupPage plugin={plugin}/>} />
+        <Route path="/letour/guide" element={<GuideHomePage plugin={plugin}/>} />
+        <Route path="/letour/guide/:groupname" element={<GuideGroupPage plugin={plugin}/>} />
         <Route path="*" element={<Navigate to="/letour" replace />} />
       </Routes>
     </Router>

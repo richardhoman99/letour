@@ -3,30 +3,40 @@ import { Button, Stack, Select, FormControl, InputLabel, MenuItem, Snackbar } fr
 import { useParams, useNavigate } from 'react-router-dom';
 
 const AudienceHomePage = (props) => {
-  const { session, plugin } = props;
+  const plugin = props.plugin;
   let { groupname } = useParams();
   const navigate = useNavigate();
-  const [openGroups, setOpenGroups] = useState(['Red','Green','Blue']);
-  const [selectedGroup, setSelectedGroup] = useState(null);
-  const [selectedGroupKey, setSelectedGroupKey] = useState(null);
+  const [openGroups, setOpenGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState(undefined);
+  const [selectedGroupKey, setSelectedGroupKey] = useState(undefined);
   
   useEffect(() => {
     const fetchData = async () => {
-	  if (session && session.plugin) {
+      if (plugin) {
+        console.log('Plugin available');
         try {
-          let message = await session.plugin.list();
-		  console.log(session.plugin);
-		  const listData = message._plainMessage.plugindata.data.list;
-		  const roomDescriptions = listData.map(item => item.description);
-		  setOpenGroups(listData.map(item => ({roomName: item.description, roomNumber: item.room})));
-		  await console.log('fectched plugin.list');
+          let message = await plugin.list();
+          // console.log('List message: ', message);
+          const messageData = message.getPlainMessage().plugindata.data;
+          const groupList = messageData.list;
+          if (!groupList) {
+            // list not available
+            console.log("No rooms available");
+          } else {
+            const roomDescriptions = groupList.map(item => item.description);
+            setOpenGroups(groupList.map(item => ({roomName: item.description, roomNumber: item.room})));
+            // console.log("Got groupList: ", groupList)
+            console.log("Got group list");
+          }
         } catch (error) {
-          console.error("Error fetching plugin list:", error);
+          console.error("Error fetching plugin groupList:", error);
         }
+      } else {
+        console.log("Plugin not currently available");
       };
-	}
-	fetchData();
-  }, [session, plugin]);
+    }
+    fetchData();
+  }, [plugin]);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',

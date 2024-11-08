@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Stack, Dialog, DialogTitle, DialogActions } from '@mui/material';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-const AudienceGroupPage = ({ session }) => {
+const AudienceGroupPage = (props) => {
+  const plugin = props.plugin;
   const { groupname } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -10,7 +12,8 @@ const AudienceGroupPage = ({ session }) => {
   const [remoteStream, setRemoteStream] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [dialogState, setDialogState] = useState(false);
-  const [inRoom, setInRoom] = useState(false);
+  const inRoom = useRef(false);
+  const [userDisplay, setUserDisplay] = useState(uuidv4());
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
@@ -20,57 +23,94 @@ const AudienceGroupPage = ({ session }) => {
     justifyContent: 'center',
   };
 
-  useEffect(() => {
-	console.log(session.plugin);
-    const connectAudio = async () => {
-      if (session && session.plugin && selectedGroupKey) {
-        try {
-          // If already in a room, change to the new room
-		  console.log(session.plugin._currentEntityId, selectedGroupKey);
-          if (session.plugin._currentEntityId == selectedGroupKey) {
-            console.log(`test: ${selectedGroupKey}`);
-          } else if (session.plugin._currentEntityId) {
-		    await session.plugin.change(selectedGroupKey, { display: "User" });
-            setInRoom(true);
-            console.log(`Joined room ${selectedGroupKey}`);
-		  } else {
-            // Join the new room
-            await session.plugin.join(selectedGroupKey, { display: "User" });
-            setInRoom(true);
-            console.log(`Joined room ${selectedGroupKey}`);
+  const joinRoom = async () => {
+    if (plugin) {
+      try {
+        // join room
+        console.log("Attempting connection to room ", selectedGroupKey)
+        let response = await plugin.join(selectedGroupKey, { display: userDisplay });
+        response = await plugin.offerStream(new MediaStream(), { offerToReceiveAudio: true }, { muted: true });
+        plugin.getPeerConnection().setConfiguration({});
+        plugin.getPeerConnection().addEventListener('connectionstatechange', async (event) => {
+          console.log('Connection state changed', event);
+        });
+        plugin.getPeerConnection().addEventListener('datachannel', async (event) => {
+          console.log('Data channel message', event);
+        });
+        plugin.getPeerConnection().addEventListener('icecandidate', async (event) => {
+          console.log('Ice candidate', event);
+        });
+        plugin.getPeerConnection().addEventListener('iceconnectionstatechange', async (event) => {
+          console.log('Ice connection state change', event);
+        });
+        plugin.getPeerConnection().addEventListener('negotiationneeded', async (event) => {
+          console.log('Negotiation needed', event);
+        });
+        plugin.getPeerConnection().addEventListener('signalingstatechange', async (event) => {
+          console.log('Signaling state change', event);
+        });
+        plugin.getPeerConnection().addEventListener('track', async (event) => {
+          if (event.streams.length < 1) {
+            console.log('No remote stream');
           }
-
-          // List participants in the room
-          const response = await session.plugin.listParticipants(selectedGroupKey);
-          setParticipants(response._plainMessage.plugindata.data.participants || []);
-          console.log("Participants:", participants.length);
-
-          // Handle the remote stream
-		  console.log(session.plugin.onremotestream);
-          session.plugin.onremotestream = (stream) => {
-            setRemoteStream(stream);
-            console.log("Remote stream received:", stream);
-          };
-        } catch (error) {
-          console.error("Error connecting to Audiobridge:", error);
-        }
+          else {
+            setRemoteStream(event.streams[0]);
+            console.log('Captured remote stream');
+          }
+        });
+        console.log("Successfully joined room ", selectedGroupKey);
+      } catch (error) {
+        console.error("Error connecting to room:", error);
       }
-    };
 
-    connectAudio();
+      // get participants
+      try {
+        const response = await plugin.listParticipants(selectedGroupKey);
+        const participantsList = response.getPlainMessage().plugindata.data.participants;
+        setParticipants(participantsList || []);
+        console.log("Got participants list");
+      } catch (error) {
+        console.error("Error getting participants list", error);
+      }
+    }
+    else {
+      console.error("Plugin is null");
+    }
+  };
+
+  const captureAudio = async () => {
+    console.log('audio');
+    if (plugin) {
+    }
+    else {
+      console.error("Plugin is null");
+    }
+  };
+
+  useEffect(() => {
+    if (!inRoom.current) {
+      inRoom.current = true;
+      joinRoom();
+    }
 
     // Cleanup on component unmount
     return () => {
       const leaveRoom = async () => {
-        if (session.plugin && session.plugin._currentEntityId) {
-          await session.plugin.leave();
-          console.log("Left the room on cleanup");
-          setInRoom(false);
+        if (plugin) {
+          if (inRoom.current)
+          {
+            inRoom.current = false;
+            await plugin.leave();
+            console.log("Left the room on cleanup");
+          }
+          else {
+            console.log("Unmount without leaving room");
+          }
         }
       };
       leaveRoom().catch(error => console.error("Error leaving the room on cleanup:", error));
     };
-  }, [session, selectedGroupKey]);
+  }, [selectedGroupKey]);
 
   const openDialog = () => setDialogState(true);
   const closeDialog = () => setDialogState(false);
@@ -91,7 +131,7 @@ const AudienceGroupPage = ({ session }) => {
             <li key={index}>{participant.display || "Participant"}</li>
           ))}
         </ul>
-
+        <p>Number of audio tracks: {remoteStream?.getAudioTracks().length} </p>
         {/* Audio element for the remote stream */}
         {remoteStream && (
           <audio
