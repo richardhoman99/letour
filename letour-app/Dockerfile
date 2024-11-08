@@ -8,10 +8,10 @@ FROM node:latest
 WORKDIR /letour-app
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm set progress=false && npm install --verbose
 
 # copy source code
-# COPY . .
+COPY . .
 
 EXPOSE 3000
 
