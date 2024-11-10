@@ -1,12 +1,18 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Button, Stack, Select, FormControl, InputLabel, MenuItem, Snackbar } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
+import AudioBridgeService from '../../wrtcservice.js'
 
 const AudienceHomePage = () => {
   let { groupname } = useParams();
   const navigate = useNavigate();
   const groups = ['Red','Green','Blue']
   const [selectedGroup, setSelectedGroup] = useState('Red');
+
+  useEffect(() => {
+    // const rooms = .listRooms();
+    // console.log('Got rooms', rooms);
+  }, []);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
@@ -22,7 +28,7 @@ const AudienceHomePage = () => {
   const selectGroup = (event: SelectChangeEvent) => {
     setSelectedGroup(event.target.value);
   };
-  const joinGroup = () => {
+  const joinRoom = () => {
     navigate(`/letour/${selectedGroup}`)
   };
 
@@ -48,7 +54,7 @@ const AudienceHomePage = () => {
               ))}
             </Select>
           </FormControl>
-          <Button variant="contained" onClick={joinGroup}>Join</Button>
+          <Button variant="contained" onClick={joinRoom}>Join</Button>
         </Stack>
       </Stack>
     </div>
