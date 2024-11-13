@@ -61,7 +61,7 @@ RUN make && make install && make configs
 COPY $CONFIG_HOST/* $CONFIG_CONTAINER
 
 # expose necessary ports
-EXPOSE 7088 8088 8188
+#EXPOSE 7088 8088 8188
 
 #CMD ["sleep", "infinity"]
 CMD ["janus", "-F", "/usr/local/etc/janus"]

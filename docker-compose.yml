@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - ./letour-app:/letour-app
+      - /letour-app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
 
@@ -18,14 +19,13 @@ services:
     #volumes:
       # expose configuration files
       #- ./janus-ab/config:/usr/local/etc/janus
-    ports:
-      - "7088:7088" # HTTPS admin API
-      - "8088:8088" # HTTP API
-      - "8188:8188" # WebSocket API
+    #ports:
+      #- "7088:7088" # HTTPS admin API
+      #- "8088:8088" # HTTP API
+      #- "8188:8188" # WebSocket API
       #- "8888:8888" # Secure WebSocket API (not using)
-      - "10000-10200:10000-10200/udp" # Media ports for WebRTC
-    #environment:
-      #- TURN_SERVER=turn:your-turn-server-url
+      #- "10000-10200:10000-10200/udp" # Media ports for WebRTC
+    network_mode: host
 
   # janus demo container
   janus-ab-demo:

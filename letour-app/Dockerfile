@@ -6,7 +6,6 @@ FROM node:latest
 #CMD ["npx", "create-react-app", "letour-app"]
 
 WORKDIR /letour-app
-
 COPY package.json package-lock.json ./
 RUN npm install
 
@@ -15,4 +14,5 @@ RUN npm install
 
 EXPOSE 3000
 
+#CMD ["sleep", "infinity"]
 CMD ["npm", "start"]

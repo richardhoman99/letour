@@ -23,33 +23,52 @@ const AudienceGroupPage = (props) => {
     justifyContent: 'center',
   };
 
+  const silentStream = () => {
+    const audioContext = new AudioContext();
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = 0;
+    const oscillator = audioContext.createOscillator();
+    oscillator.frequency.value = 440;
+    const destination = audioContext.createMediaStreamDestination();
+    oscillator.connect(gainNode).connect(destination);
+    oscillator.start();
+    gainNode.connect(destination);
+
+    return destination.stream;
+  };
+
   const joinRoom = async () => {
     if (plugin) {
       try {
         // join room
         console.log("Attempting connection to room ", selectedGroupKey)
         let response = await plugin.join(selectedGroupKey, { display: userDisplay });
-        response = await plugin.offerStream(new MediaStream(), { offerToReceiveAudio: true }, { muted: true });
-        plugin.getPeerConnection().setConfiguration({});
-        plugin.getPeerConnection().addEventListener('connectionstatechange', async (event) => {
-          console.log('Connection state changed', event);
+        // const userStream = await plugin.getUserMedia();
+        response = await plugin.offerStream(silentStream(), { offerToReceiveAudio: true }, { muted: true });
+        const pc = plugin.getPeerConnection();
+        let config = pc.getConfiguration();
+        config.iceServers = [{'url': 'stun:' + window.location.host}];
+        console.log(config);
+        pc.setConfiguration(config);
+        // pc.addEventListener('connectionstatechange', async (event) => {
+        //   console.log('Connection state changed', event);
+        // });
+        // pc.addEventListener('datachannel', async (event) => {
+        //   console.log('Data channel message', event);
+        // });
+        pc.addEventListener('icecandidate', async (event) => {
+          console.log('Ice candidate', event.candidate);
         });
-        plugin.getPeerConnection().addEventListener('datachannel', async (event) => {
-          console.log('Data channel message', event);
-        });
-        plugin.getPeerConnection().addEventListener('icecandidate', async (event) => {
-          console.log('Ice candidate', event);
-        });
-        plugin.getPeerConnection().addEventListener('iceconnectionstatechange', async (event) => {
-          console.log('Ice connection state change', event);
-        });
-        plugin.getPeerConnection().addEventListener('negotiationneeded', async (event) => {
-          console.log('Negotiation needed', event);
-        });
-        plugin.getPeerConnection().addEventListener('signalingstatechange', async (event) => {
-          console.log('Signaling state change', event);
-        });
-        plugin.getPeerConnection().addEventListener('track', async (event) => {
+        // pc.addEventListener('iceconnectionstatechange', async (event) => {
+        //   console.log('Ice connection state change', event);
+        // });
+        // pc.addEventListener('negotiationneeded', async (event) => {
+        //   console.log('Negotiation needed', event);
+        // });
+        // pc.addEventListener('signalingstatechange', async (event) => {
+        //   console.log('Signaling state change', event);
+        // });
+        pc.addEventListener('track', async (event) => {
           if (event.streams.length < 1) {
             console.log('No remote stream');
           }
@@ -58,9 +77,9 @@ const AudienceGroupPage = (props) => {
             console.log('Captured remote stream');
           }
         });
-        console.log("Successfully joined room ", selectedGroupKey);
+        console.log('Successfully joined room', selectedGroupKey);
       } catch (error) {
-        console.error("Error connecting to room:", error);
+        console.error('Error connecting to room', error);
       }
 
       // get participants
@@ -68,9 +87,9 @@ const AudienceGroupPage = (props) => {
         const response = await plugin.listParticipants(selectedGroupKey);
         const participantsList = response.getPlainMessage().plugindata.data.participants;
         setParticipants(participantsList || []);
-        console.log("Got participants list");
+        console.log('Got participants list');
       } catch (error) {
-        console.error("Error getting participants list", error);
+        console.error('Error getting participants list', error);
       }
     }
     else {
@@ -101,6 +120,7 @@ const AudienceGroupPage = (props) => {
           {
             inRoom.current = false;
             await plugin.leave();
+            plugin.getPeerConnection().close();
             console.log("Left the room on cleanup");
           }
           else {
