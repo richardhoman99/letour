@@ -16,6 +16,7 @@ const GuideGroupPage = (props) => {
   const [remoteStream, setRemoteStream] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [micStream, setMicStream] = useState(null);
+  const [isMicMuted, setIsMicMuted] = useState(false);
   
   const joinRoom = async (createdRoom) => {
     if (plugin) {
@@ -116,6 +117,20 @@ const GuideGroupPage = (props) => {
   const CloseDialog = () => {
     setDialogState(false);
   };
+  
+  const toggleMic = () => {
+    if (micStream) {
+      const audioTrack = micStream.getAudioTracks()[0];
+      if (audioTrack.enabled) {
+        audioTrack.enabled = false;
+        setIsMicMuted(true);
+      } else {
+        audioTrack.enabled = true;
+        setIsMicMuted(false);
+      }
+    }
+  };
+  
   const ReturnHome = () => {
 	if(micStream){
 		micStream.getTracks().forEach((track) => track.stop())
@@ -176,8 +191,18 @@ const GuideGroupPage = (props) => {
             ref={(audioElement) => {
               if (audioElement) audioElement.srcObject = remoteStream;
             }}
+			style={{ display: "none" }}
           />
         )}
+		
+		<Button 
+          variant="contained" 
+          onClick={toggleMic}
+          style={{ backgroundColor: isMicMuted ? 'red' : 'green', display: 'flex', alignItems: 'center' }}
+        >
+          {isMicMuted ? 'Unmute Mic' : 'Mute Mic'}
+        </Button>
+		
         <Button variant="contained" onClick={OpenDialog}>End Group</Button>
       </Stack>
       <Dialog

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Stack, Dialog, DialogTitle, DialogActions } from '@mui/material';
+import { Button, Stack, Slider, Dialog, DialogTitle, DialogActions } from '@mui/material';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -14,6 +14,8 @@ const AudienceGroupPage = (props) => {
   const [dialogState, setDialogState] = useState(false);
   const inRoom = useRef(false);
   const [userDisplay, setUserDisplay] = useState(uuidv4());
+  const [volume, setVolume] = React.useState(100);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const backgroundstyle = {
     background: 'linear-gradient(45deg, #9892f2, #f5f999)',
@@ -134,6 +136,27 @@ const AudienceGroupPage = (props) => {
 
   const openDialog = () => setDialogState(true);
   const closeDialog = () => setDialogState(false);
+  
+  const handleVolumeChange = (event: Event, newVolume: number | number[]) => {
+    setVolume(newVolume);
+	const audioElement = document.querySelector("#remote-audio");
+    if (audioElement) {
+      audioElement.volume = newVolume / 100;
+    }
+  };
+  
+  const togglePlayback = () => {
+    if (isPlaying) {
+      remoteStream?.getAudioTracks().forEach(function (track) {
+	    track.enabled = false;
+      });
+    } else {
+      remoteStream?.getAudioTracks().forEach(function (track) {
+		track.enabled = true;
+      });
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const returnHome = () => {
     navigate('/letour', { state: { groupname } });
@@ -155,13 +178,30 @@ const AudienceGroupPage = (props) => {
         {/* Audio element for the remote stream */}
         {remoteStream && (
           <audio
+		    id="remote-audio"
             autoPlay
             controls
             ref={(audioElement) => {
-              if (audioElement) audioElement.srcObject = remoteStream;
+              if (audioElement) {
+			    audioElement.srcObject = remoteStream
+				console.log(audioElement)
+			  };
             }}
+			style={{ display: "none" }}
           />
         )}
+		<Button
+          variant="contained"
+          onClick={togglePlayback}
+          style={{ marginBottom: '20px' }}
+        >
+          {isPlaying ? "Pause" : "Play"}
+        </Button>
+		<Slider
+          value={typeof volume === 'number' ? volume : 0}
+          onChange={handleVolumeChange}
+          sx={{width: '100px'}}
+        />
         
         <Button variant="contained" onClick={openDialog}>Leave Group</Button>
       </Stack>
