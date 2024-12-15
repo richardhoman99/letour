@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="LeTour Guide" company="" webLink="http://" view-date="2024-10-23" view-index="0" gantt-divider-location="909" resource-divider-location="511" version="3.3.3311" locale="en_US">
+    <description/>
+    <view zooming-state="default:3" id="gantt-chart">
+        <field id="tpd3" name="Name" width="302" order="0"/>
+        <field id="tpd4" name="Begin date" width="150" order="1"/>
+        <field id="tpd5" name="End date" width="72" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
+        <field id="tpd7" name="Completion" width="116" order="3"/>
+        <field id="tpd9" name="Predecessors" width="58" order="4"/>
+        <field id="tpd13" name="Resources" width="210" order="5"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="311" order="0"/>
+        <field id="1" name="Default role" width="196" order="1"/>
+    </view>
+    <!-- -->
+    <calendars base-id="us.federal">
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="1" tue="1" wed="1" thu="1" fri="1" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="" month="1" date="1" type="HOLIDAY"><![CDATA[New Years Day]]></date>
+        <date year="" month="2" date="2" type="NEUTRAL"><![CDATA[Groundhog Day]]></date>
+        <date year="" month="7" date="4" type="HOLIDAY"><![CDATA[Independence Day]]></date>
+        <date year="" month="11" date="11" type="HOLIDAY"><![CDATA[Veterans Day]]></date>
+        <date year="" month="12" date="25" type="HOLIDAY"><![CDATA[Christmas Day]]></date>
+        <date year="2022" month="1" date="17" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2022" month="2" date="21" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2022" month="5" date="8" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2022" month="5" date="30" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2022" month="6" date="19" type="HOLIDAY"><![CDATA[Juneteenth]]></date>
+        <date year="2022" month="6" date="20" type="HOLIDAY"><![CDATA[Juneteenth (in lieu)]]></date>
+        <date year="2022" month="9" date="5" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2022" month="10" date="10" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2022" month="11" date="24" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2022" month="11" date="25" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2022" month="12" date="26" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+        <date year="2008" month="1" date="21" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2008" month="2" date="18" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2008" month="5" date="26" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2008" month="9" date="1" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2008" month="10" date="13" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2008" month="11" date="27" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2008" month="11" date="28" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2009" month="1" date="19" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2009" month="2" date="16" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2009" month="5" date="25" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2009" month="7" date="3" type="HOLIDAY"><![CDATA[Independence Day]]></date>
+        <date year="2009" month="9" date="7" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2009" month="10" date="12" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2009" month="11" date="26" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2009" month="11" date="27" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2010" month="1" date="18" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2010" month="2" date="15" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2010" month="5" date="9" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2010" month="5" date="31" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2010" month="7" date="5" type="HOLIDAY"><![CDATA[Independence Day]]></date>
+        <date year="2010" month="9" date="6" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2010" month="10" date="11" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2010" month="11" date="25" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2010" month="11" date="26" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2010" month="12" date="24" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+        <date year="2010" month="12" date="31" type="HOLIDAY"><![CDATA[New Years Day (in lieu)]]></date>
+        <date year="2011" month="1" date="17" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2011" month="2" date="21" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2011" month="4" date="15" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2011" month="5" date="8" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2011" month="5" date="30" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2011" month="6" date="19" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2011" month="9" date="5" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2011" month="10" date="10" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2011" month="11" date="24" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2011" month="11" date="25" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2011" month="12" date="26" type="HOLIDAY"><![CDATA[Christmas Holiday]]></date>
+        <date year="2012" month="1" date="2" type="HOLIDAY"><![CDATA[New Years Day (in lieu)]]></date>
+        <date year="2012" month="1" date="16" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2012" month="2" date="20" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2012" month="4" date="16" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2012" month="5" date="13" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2012" month="5" date="28" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2012" month="6" date="17" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2012" month="9" date="3" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2012" month="10" date="8" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2012" month="11" date="12" type="HOLIDAY"><![CDATA[Veterans Day]]></date>
+        <date year="2012" month="11" date="22" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2012" month="11" date="23" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2013" month="1" date="21" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2013" month="2" date="18" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2013" month="4" date="16" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2013" month="5" date="12" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2013" month="5" date="27" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2013" month="6" date="16" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2013" month="9" date="2" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2013" month="10" date="14" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2013" month="11" date="28" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2013" month="11" date="29" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2014" month="1" date="20" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2014" month="2" date="17" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2014" month="4" date="16" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2014" month="5" date="11" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2014" month="5" date="26" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2014" month="6" date="15" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2014" month="9" date="1" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2014" month="10" date="13" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2014" month="11" date="27" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2014" month="11" date="28" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2014" month="12" date="26" type="HOLIDAY"><![CDATA[Day after Christmas]]></date>
+        <date year="2015" month="1" date="19" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2015" month="2" date="16" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2015" month="4" date="16" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2015" month="5" date="10" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2015" month="5" date="25" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2015" month="6" date="21" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2015" month="7" date="3" type="HOLIDAY"><![CDATA[Independence Day (observed)]]></date>
+        <date year="2015" month="9" date="7" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2015" month="10" date="12" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2015" month="11" date="26" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2015" month="11" date="27" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2016" month="1" date="18" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2016" month="2" date="15" type="HOLIDAY"><![CDATA[Presidents Day]]></date>
+        <date year="2016" month="4" date="15" type="NEUTRAL"><![CDATA[Emancipation Day (Regional)]]></date>
+        <date year="2016" month="5" date="8" type="NEUTRAL"><![CDATA[Mothers Day]]></date>
+        <date year="2016" month="5" date="30" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2016" month="6" date="19" type="NEUTRAL"><![CDATA[Fathers Day]]></date>
+        <date year="2016" month="9" date="5" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2016" month="10" date="10" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2016" month="11" date="24" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2016" month="11" date="25" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2016" month="12" date="26" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+        <date year="2017" month="1" date="2" type="HOLIDAY"><![CDATA[New Years Day (in lieu)]]></date>
+        <date year="2017" month="1" date="16" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2017" month="2" date="20" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2017" month="5" date="14" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2017" month="5" date="29" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2017" month="6" date="18" type="NEUTRAL"><![CDATA[Father's Day]]></date>
+        <date year="2017" month="9" date="4" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2017" month="10" date="9" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2017" month="11" date="10" type="HOLIDAY"><![CDATA[Veterans Day (in lieu)]]></date>
+        <date year="2017" month="11" date="23" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2017" month="11" date="24" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2018" month="1" date="15" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2018" month="2" date="19" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2018" month="5" date="13" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2018" month="5" date="28" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2018" month="6" date="17" type="NEUTRAL"><![CDATA[Father's Day]]></date>
+        <date year="2018" month="9" date="3" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2018" month="10" date="8" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2018" month="11" date="22" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2018" month="11" date="23" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2019" month="1" date="21" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2019" month="2" date="18" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2019" month="5" date="12" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2019" month="5" date="27" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2019" month="6" date="16" type="NEUTRAL"><![CDATA[Father's Day]]></date>
+        <date year="2019" month="9" date="2" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2019" month="10" date="14" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2019" month="11" date="28" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2019" month="11" date="29" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2020" month="1" date="20" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2020" month="2" date="17" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2020" month="5" date="10" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2020" month="5" date="25" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2020" month="6" date="21" type="NEUTRAL"><![CDATA[Father's Day]]></date>
+        <date year="2020" month="7" date="3" type="HOLIDAY"><![CDATA[Independence Day (in lieu)]]></date>
+        <date year="2020" month="9" date="7" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2020" month="10" date="12" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2020" month="11" date="26" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2020" month="11" date="27" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2021" month="1" date="18" type="HOLIDAY"><![CDATA[Martin Luther King Day]]></date>
+        <date year="2021" month="2" date="15" type="HOLIDAY"><![CDATA[Presidents' Day]]></date>
+        <date year="2021" month="5" date="9" type="NEUTRAL"><![CDATA[Mother's Day]]></date>
+        <date year="2021" month="5" date="31" type="HOLIDAY"><![CDATA[Memorial Day]]></date>
+        <date year="2021" month="6" date="20" type="NEUTRAL"><![CDATA[Father's Day]]></date>
+        <date year="2021" month="7" date="5" type="HOLIDAY"><![CDATA[Independence Day (in lieu)]]></date>
+        <date year="2021" month="9" date="6" type="HOLIDAY"><![CDATA[Labor Day]]></date>
+        <date year="2021" month="10" date="11" type="HOLIDAY"><![CDATA[Columbus Day]]></date>
+        <date year="2021" month="11" date="25" type="HOLIDAY"><![CDATA[Thanksgiving]]></date>
+        <date year="2021" month="11" date="26" type="NEUTRAL"><![CDATA[Day after Thanksgiving]]></date>
+        <date year="2021" month="12" date="24" type="HOLIDAY"><![CDATA[Christmas Day (in lieu)]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="40" uid="bf321d432a994d41bbd02cf98b6ba266" name="Documentation / Testing" meeting="false" start="2024-10-14" duration="46" complete="20" expand="true">
+            <task id="41" uid="b83b166dc7a542ef9bd08d5e2c115c2f" name="Software Design Document" meeting="false" start="2024-10-14" duration="1" complete="100" expand="true"/>
+            <task id="42" uid="049847c6628040f8a3c9e36a32f32f86" name="Application Prototype" meeting="true" start="2024-11-12" duration="0" complete="0" expand="true"/>
+            <task id="43" uid="316aeced876a4c679b7d71efc76d316f" name="Test-Ready Project" meeting="true" start="2024-11-28" duration="0" complete="0" expand="true"/>
+            <task id="44" uid="2abf0a63520f424f84a34434efdba135" name="Testing Report" meeting="false" start="2024-11-16" duration="1" complete="0" expand="true"/>
+            <task id="45" uid="eb72f8b083494465a256c5d8fafddf8f" name="Project Ad / Software Demo" meeting="false" start="2024-11-29" duration="1" complete="0" expand="true"/>
+            <task id="46" uid="b0fa18d1749d4cd38bb81a3cde6d28f6" name="Monitoring &amp; Reviews" meeting="false" start="2024-11-20" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="0" uid="5746c116b4434fb7926149239ab2fa56" name="Front-end" meeting="false" project="true" start="2024-10-20" duration="22" complete="26" expand="false">
+            <task id="6" uid="367c90cf176a486abf1c409477327f9c" name="Audience Landing" meeting="false" start="2024-10-20" duration="5" complete="25" expand="true">
+                <depend id="7" type="2" difference="0" hardness="Strong"/>
+                <task id="4" uid="8391e497d3d946578a4b47595bf3651a" name="UI" meeting="false" start="2024-10-20" duration="1" complete="75" expand="true"/>
+                <task id="2" uid="f8a58243412740f7b47152bba65ca4ea" name="Polling for available tours" meeting="false" start="2024-10-22" duration="1" complete="0" expand="true"/>
+                <task id="3" uid="0bf135e4a5bd4d0694c19058d5b98c68" name="Send user to LeTour page" meeting="false" start="2024-10-24" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="7" uid="a5728fc094b44408be606987ac0481eb" name="Audience In-Tour" meeting="false" start="2024-10-25" duration="7" complete="30" expand="true">
+                <depend id="13" type="2" difference="0" hardness="Strong"/>
+                <task id="12" uid="f202024ccafb43c2acafe9dc31456d52" name="UI" meeting="false" start="2024-10-25" duration="1" complete="75" expand="true"/>
+                <task id="8" uid="9d9d65f98749403ca51bff2fac465fdd" name="Audio streaming" meeting="false" start="2024-10-26" duration="1" complete="0" expand="true"/>
+                <task id="9" uid="d9e86606e35f471bb24f1fc3634370d4" name="Mute/unmute" meeting="false" start="2024-10-27" duration="1" complete="0" expand="true"/>
+                <task id="10" uid="ce187f38f95842ab8c51f8912f88cec4" name="Volume dimmer" meeting="false" start="2024-10-29" duration="1" complete="75" expand="true"/>
+                <task id="11" uid="10d0a911fe98485f9614f5c3a00d4fd5" name="Leave button" meeting="false" start="2024-10-31" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="13" uid="7a6313eba0da46c9ac3e7aacf34db249" name="Guide Landing" meeting="false" start="2024-11-01" duration="5" complete="25" expand="true">
+                <depend id="17" type="2" difference="0" hardness="Strong"/>
+                <task id="16" uid="58feeeebce01408ab4514acaf6ada523" name="UI" meeting="false" start="2024-11-01" duration="1" complete="75" expand="true"/>
+                <task id="14" uid="f8880ce5fe0b46d395c397debccd33b0" name="Create group" meeting="false" start="2024-11-03" duration="1" complete="0" expand="true"/>
+                <task id="15" uid="cdf0a7d5723a46db88dda3fbb4198eb3" name="Send user to In-Tour page" meeting="false" start="2024-11-05" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="17" uid="56f3c77e610f477382e7b5c227031dbd" name="Guide In-Tour" meeting="false" start="2024-11-06" duration="5" complete="25" expand="true">
+                <task id="20" uid="e4f869625a384cae8fafe50f31c1591c" name="UI" meeting="false" start="2024-11-06" duration="1" complete="75" expand="true"/>
+                <task id="18" uid="41a8017be56a467aaff247bb31750263" name="Number of listeners" meeting="false" start="2024-11-08" duration="1" complete="0" expand="true"/>
+                <task id="19" uid="2220a2a953b74e6abe91b5eda2ec9b0a" name="End button" meeting="false" start="2024-11-10" duration="1" complete="0" expand="true"/>
+            </task>
+        </task>
+        <task id="21" uid="ec7bd338e3674e06b38367f058b58218" name="Back-end" meeting="false" project="true" start="2024-11-03" duration="13" complete="81" expand="false">
+            <task id="22" uid="7a88b3ad0e09413eb02ee796dc8422ad" name="Build audio bridge demo" meeting="false" start="2024-11-03" duration="2" complete="100" expand="true">
+                <depend id="23" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="23" uid="3fe4bd8aa99e4bacb5ca0b9e9ad0f7b5" name="Development dummy groups" meeting="false" start="2024-11-05" duration="8" complete="83" expand="true">
+                <depend id="30" type="2" difference="0" hardness="Strong"/>
+                <task id="29" uid="4680b0a6b4df43ce9ceed8a6f865e846" name="f. Create dummy groups on startup" meeting="false" start="2024-11-05" duration="1" complete="100" expand="true"/>
+                <task id="24" uid="98ccbb0799594e66a0377a693708011d" name="a. API endpoint: poll for groups" meeting="false" start="2024-11-06" duration="1" complete="100" expand="true"/>
+                <task id="25" uid="f44865cd9d3241179c5bfe63b3cbf05a" name="b. API endpoint: join group" meeting="false" start="2024-11-07" duration="1" complete="100" expand="true"/>
+                <task id="26" uid="8338cf338dfc4cb1b050c32feb600f21" name="c. API endpoint: streaming" meeting="false" start="2024-11-13" duration="1" complete="0" expand="true"/>
+                <task id="27" uid="7d6e683e9a4c4e80b5f8cfd643b090ff" name="d. API endpoint: listener count" meeting="false" start="2024-11-09" duration="1" complete="100" expand="true"/>
+                <task id="28" uid="6bf63cafb6bf4e169b3bdf49adee9189" name="e. API endpoint: leaving" meeting="false" start="2024-11-10" duration="1" complete="100" expand="true"/>
+            </task>
+            <task id="30" uid="388e91f0683a4a55a56bd6d0acbcd518" name="Feature complete server" meeting="false" start="2024-11-14" duration="3" complete="66" expand="true">
+                <task id="31" uid="b788747267c24814996ec4fcd55ea953" name="a. API endpoint: create group" meeting="false" start="2024-11-14" duration="1" complete="100" expand="true"/>
+                <task id="34" uid="93e0fd7ee4f441dba608fd55172594b9" name="b. API endpoint: end group" meeting="false" start="2024-11-15" duration="1" complete="100" expand="true"/>
+                <task id="33" uid="96a291d41e474419b8b0e290972f66ec" name="c. API endpoint: input stream" meeting="false" start="2024-11-16" duration="1" complete="0" expand="true"/>
+            </task>
+        </task>
+        <task id="35" uid="172c4e1ad4a8462596e549c8f8bcf9cb" name="QA" meeting="false" project="true" start="2024-11-12" duration="4" complete="0" expand="true">
+            <task id="36" uid="a1224e3aa08245a7b92dff5c844ac7e2" name="Audience landing" meeting="false" start="2024-11-12" duration="1" complete="0" expand="true"/>
+            <task id="37" uid="6757c5f6476c40a8a9e54db12fbbba01" name="Audience In-Tour" meeting="false" start="2024-11-13" duration="1" complete="0" expand="true"/>
+            <task id="38" uid="8bb049e4979448bdbedbcd199138062a" name="Guide Loading" meeting="false" start="2024-11-14" duration="1" complete="0" expand="true"/>
+            <task id="39" uid="f22b13d8b1ec4982a60450fae45fe6ca" name="Guide In-Tour" meeting="false" start="2024-11-15" duration="1" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Joel Wink" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Richard Homan" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Cameron Bundy" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="35" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="40" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="22" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="23" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="30" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="7" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="13" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="17" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="0" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
