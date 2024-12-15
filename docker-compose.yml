@@ -1,8 +1,9 @@
 services:
   # frontend container
   app:
+    container_name: app
     build:
-      context: ./letour-app
+      context: letour-app
     ports:
       - "3000:3000"
     volumes:
@@ -16,9 +17,6 @@ services:
     container_name: janus
     build:
       context: janus-ab
-    #volumes:
-      # expose configuration files
-      #- ./janus-ab/config:/usr/local/etc/janus
     ports:
       - "7088:7088" # HTTPS admin API
       - "8088:8088" # HTTP API
@@ -33,3 +31,11 @@ services:
       context: janus-ab-demo
     ports:
       - "8080:8080"
+
+volumes:
+  app-files:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./letour-app
